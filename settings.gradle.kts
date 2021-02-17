@@ -1,6 +1,6 @@
 rootProject.name = "jdoctor"
 
-includeBuild("build-logic")
+includeBuild("jdoctor-build-logic")
 
 include("jdoctor-bom")
 include("jdoctor-core")
