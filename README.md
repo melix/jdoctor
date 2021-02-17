@@ -20,6 +20,14 @@ As a consequence, JDoctor provides a library to make it easier to design good er
 
 This library is currently in experimental stages, feedback is welcome.
 
+### Modules
+
+This project consists of the following modules:
+
+- `jdoctor-core` is the main API mosly consisting of the model
+- `jdoctor-utils` is a convenience module providing builders and renderers for problems and solutions
+- `jdoctor-bom` is a platform used for aligning dependency versions
+
 ### Building
 
 Run `./gradlew build`

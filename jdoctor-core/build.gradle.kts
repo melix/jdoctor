@@ -2,6 +2,7 @@ plugins {
     groovy
     id("me.champeau.java-module")
     id("me.champeau.publishing")
+    `java-test-fixtures`
 }
 
 dependencies {

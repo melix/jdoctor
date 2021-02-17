@@ -13,18 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package me.champeau.jdoctor.exceptions;
 
-package me.champeau.jdoctor
+import me.champeau.jdoctor.Problem;
+import me.champeau.jdoctor.render.SimpleTextRenderer;
 
-import groovy.transform.Canonical
-import groovy.transform.CompileStatic
-
-@CompileStatic
-@Canonical
-class TestContext {
-    final String value
-
-    String toString() {
-        value
+public class ExceptionUtils {
+    public static <T extends Throwable, ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT, PAYLOAD>
+    RuntimeException asRuntimeException(Problem<ID, SEVERITY, CONTEXT, PAYLOAD> problem) {
+        String message = SimpleTextRenderer.render(problem);
+        return new RuntimeException(message);
     }
 }

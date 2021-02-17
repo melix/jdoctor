@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package me.champeau.jdoctor.builders;
 
-package me.champeau.jdoctor
+import me.champeau.jdoctor.builders.internal.DefaultSolutionBuilder;
 
-import groovy.transform.Canonical
-import groovy.transform.CompileStatic
-
-@CompileStatic
-@Canonical
-class TestContext {
-    final String value
-
-    String toString() {
-        value
+public interface SolutionBuilder extends DescriptionBuilder<SolutionBuilder>, DocumentedBuilder<SolutionBuilder>, Builder {
+    /**
+     * Returns a new solution builder for which the short description is set to the
+     * provided supplier
+     *
+     * @return a solution builder
+     */
+    static SolutionBuilder newSolution() {
+        return new DefaultSolutionBuilder();
     }
 }

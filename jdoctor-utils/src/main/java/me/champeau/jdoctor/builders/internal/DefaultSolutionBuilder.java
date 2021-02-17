@@ -13,18 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package me.champeau.jdoctor.builders.internal;
 
-package me.champeau.jdoctor
+import me.champeau.jdoctor.BaseSolution;
+import me.champeau.jdoctor.Solution;
+import me.champeau.jdoctor.builders.SolutionBuilder;
 
-import groovy.transform.Canonical
-import groovy.transform.CompileStatic
+import java.util.function.Supplier;
 
-@CompileStatic
-@Canonical
-class TestContext {
-    final String value
+public class DefaultSolutionBuilder extends AbstractDescribingBuilder<SolutionBuilder> implements SolutionBuilder, Supplier<Solution> {
 
-    String toString() {
-        value
+    public Solution get() {
+        return new BaseSolution(shortDescription, longDescription, documentationLink);
     }
 }

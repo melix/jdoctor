@@ -32,7 +32,7 @@ public class BaseProblem<ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, C
     private final Supplier<String> docUrl;
     private final List<Supplier<Solution>> solutions;
 
-    protected BaseProblem(ID id,
+    public BaseProblem(ID id,
                           SEVERITY severity,
                           CONTEXT context,
                           PAYLOAD payload,

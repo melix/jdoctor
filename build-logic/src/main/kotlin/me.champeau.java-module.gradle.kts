@@ -16,7 +16,6 @@
 
 plugins {
     `java-library`
-    `java-test-fixtures`
 }
 
 java {
@@ -25,6 +24,7 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
     }
+    modularity.inferModulePath.set(true)
 }
 
 val java11 by sourceSets.creating {
@@ -46,5 +46,15 @@ tasks.named<Jar>("jar") {
     from(java11.output) {
         into("META-INF/versions/9")
         include("module-info.class")
+    }
+    manifest {
+        attributes("Multi-Release" to "true")
+    }
+}
+
+configurations {
+    "java11Implementation" {
+        extendsFrom(api.get())
+        extendsFrom(implementation.get())
     }
 }

@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-package me.champeau.jdoctor
+plugins {
+    groovy
+    id("me.champeau.java-module")
+    id("me.champeau.publishing")
+}
 
-import groovy.transform.Canonical
-import groovy.transform.CompileStatic
+dependencies {
+    api(platform(project(":jdoctor-bom")))
+    api(project(":jdoctor-core"))
 
-@CompileStatic
-@Canonical
-class TestContext {
-    final String value
+    testImplementation("org.codehaus.groovy:groovy:2.5.13")
+    testImplementation("org.spockframework:spock-core:1.3-groovy-2.5")
+    testImplementation("junit:junit:4.13")
 
-    String toString() {
-        value
-    }
+    testImplementation(testFixtures(project(":jdoctor-core")))
 }

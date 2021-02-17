@@ -13,18 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package me.champeau.jdoctor.builders;
 
-package me.champeau.jdoctor
+import java.util.function.Supplier;
 
-import groovy.transform.Canonical
-import groovy.transform.CompileStatic
+public interface DescriptionBuilder<T extends DescriptionBuilder<T>> {
 
-@CompileStatic
-@Canonical
-class TestContext {
-    final String value
+    T withShortDescription(Supplier<String> shortDescription);
 
-    String toString() {
-        value
+    default T withShortDescription(String description) {
+        return withShortDescription(() -> description);
     }
+
+    T withLongDescription(Supplier<String> longDescription);
+
+    default T withLongDescription(String description) {
+        return withLongDescription(() -> description);
+    }
+
 }
