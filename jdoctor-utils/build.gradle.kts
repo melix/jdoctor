@@ -26,9 +26,7 @@ dependencies {
     api(platform(project(":jdoctor-bom")))
     api(project(":jdoctor-core"))
 
-    testImplementation("org.codehaus.groovy:groovy:2.5.13")
-    testImplementation("org.spockframework:spock-core:1.3-groovy-2.5")
-    testImplementation("junit:junit:4.13")
+    testImplementation(libs.bundles.commonTestLibraries)
 
     testImplementation(testFixtures(project(":jdoctor-core")))
 }
