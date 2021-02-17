@@ -19,6 +19,8 @@ plugins {
     id("me.champeau.publishing")
 }
 
+description = "A platform (BOM) used to align all module versions"
+
 dependencies {
     constraints {
         api(project(":jdoctor-core"))

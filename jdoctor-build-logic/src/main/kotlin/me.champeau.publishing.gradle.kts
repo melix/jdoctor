@@ -1,6 +1,6 @@
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.get
-import org.gradle.kotlin.dsl.repositories
+import org.gradle.api.publish.maven.MavenPom
 
 /*
  * Copyright 2021 the original author or authors.
@@ -34,12 +34,43 @@ publishing {
         plugins.withId("java-library") {
             create<MavenPublication>("maven") {
                 from(components["java"])
+                pom.addRequiredMetadataForPublicationOnMavenCentral()
             }
         }
         plugins.withId("java-platform") {
             create<MavenPublication>("maven") {
                 from(components["javaPlatform"])
+                pom.addRequiredMetadataForPublicationOnMavenCentral()
             }
         }
+    }
+}
+
+// Follow the requirements described at https://central.sonatype.org/pages/requirements.html
+// (which assume that POM is the king)
+fun MavenPom.addRequiredMetadataForPublicationOnMavenCentral() {
+    name.set(providers.provider { "${project.group}:${project.name}" })
+    description.set(providers.provider { project.description })
+    url.set("https://github.com/melix/jdoctor")
+    licenses {
+        license {
+            name.set("The Apache Software License, Version 2.0")
+            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+        }
+    }
+
+    developers {
+        developer {
+            name.set("Cédric Champeau")
+            email.set("cedric.champeau@gmail.com")
+            organization.set("Personal")
+            organizationUrl.set("https://github.com/melix")
+        }
+    }
+
+    scm {
+        connection.set("scm:git:git://github.com/melix/jdoctor.git")
+        developerConnection.set("scm:git:ssh://github.com/melix/jdoctor.git")
+        url.set("https://github.com/melix/jdoctor/tree/master")
     }
 }

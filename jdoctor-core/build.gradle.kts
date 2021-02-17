@@ -5,6 +5,8 @@ plugins {
     `java-test-fixtures`
 }
 
+description = "The core model of jdoctor"
+
 dependencies {
     api(platform(project(":jdoctor-bom")))
     testImplementation("org.codehaus.groovy:groovy:2.5.13")

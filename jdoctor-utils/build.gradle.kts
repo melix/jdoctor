@@ -20,6 +20,8 @@ plugins {
     id("me.champeau.publishing")
 }
 
+description = "A set of utilities to make easier the use of jdoctor"
+
 dependencies {
     api(platform(project(":jdoctor-bom")))
     api(project(":jdoctor-core"))
