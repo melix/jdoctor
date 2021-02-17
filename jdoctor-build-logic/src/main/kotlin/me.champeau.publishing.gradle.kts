@@ -19,6 +19,7 @@ import org.gradle.api.publish.maven.MavenPom
  */
 plugins {
     `maven-publish`
+    signing
 }
 
 group = "me.champeau.jdoctor"
@@ -28,6 +29,16 @@ publishing {
         maven {
             name = "projectLocal"
             url = uri("${rootProject.buildDir}/repo")
+        }
+        maven {
+            name = "mavenCentral"
+            url = uri(
+                if (isSnapshot()) {
+                    "https://oss.sonatype.org/content/repositories/snapshots/"
+                } else {
+                    "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                }
+            )
         }
     }
     publications {
@@ -44,6 +55,18 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    setRequired {
+        gradle.taskGraph.allTasks.any {
+            it.name.startsWith("publish")
+        }
+    }
+    publishing.publications.configureEach {
+        sign(this)
+    }
+    useGpgCmd()
 }
 
 // Follow the requirements described at https://central.sonatype.org/pages/requirements.html
@@ -74,3 +97,5 @@ fun MavenPom.addRequiredMetadataForPublicationOnMavenCentral() {
         url.set("https://github.com/melix/jdoctor/tree/master")
     }
 }
+
+fun isSnapshot() = (version as String).endsWith("-SNAPSHOT")
