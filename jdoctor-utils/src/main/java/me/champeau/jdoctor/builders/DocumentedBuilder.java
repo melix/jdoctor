@@ -17,9 +17,27 @@ package me.champeau.jdoctor.builders;
 
 import java.util.function.Supplier;
 
+/**
+ * Interface for builders of {@link me.champeau.jdoctor.WithDocumentationLink}.
+ *
+ * @param <T> the type of the builder
+ */
 public interface DocumentedBuilder<T extends DocumentedBuilder<T>> {
+    /**
+     * Defines the supplier of documentation link.
+     * @param link the supplier of documentation link
+     * @return this builder
+     */
     T documentedAt(Supplier<String> link);
 
+    /**
+     * Defines the supplier of documentation link. If the link is
+     * expensive to compute, it's recommended to use the {@link #documentedAt(Supplier)}
+     * method instead.
+     *
+     * @param link the supplier of documentation link
+     * @return this builder
+     */
     default T documentedAt(String link) {
         return documentedAt(() -> link);
     }

@@ -17,6 +17,9 @@ package me.champeau.jdoctor.builders;
 
 import me.champeau.jdoctor.builders.internal.DefaultSolutionBuilder;
 
+/**
+ * The generic interface for solution builders.
+ */
 public interface SolutionBuilder extends DescriptionBuilder<SolutionBuilder>, DocumentedBuilder<SolutionBuilder>, Builder {
     /**
      * Returns a new solution builder for which the short description is set to the

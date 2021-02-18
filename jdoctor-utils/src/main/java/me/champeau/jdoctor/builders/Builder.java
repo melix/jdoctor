@@ -22,6 +22,16 @@ import me.champeau.jdoctor.exceptions.ExceptionUtils;
 
 import java.util.function.Supplier;
 
+/**
+ * Builders which want to hide their build() method should implement
+ * both this interface and the {@link Supplier} interface.
+ *
+ * Why hiding the build() method? If you follow the configuration
+ * pattern, which is to provide a builder via a {@link java.util.function.Consumer},
+ * then it's not a good idea to expose the build method directly as
+ * a user may call it when it should be the responsibility of the
+ * code which creates the builder to finalize (and build).
+ */
 public interface Builder {
     /**
      * Builders provided by the `jdoctor-builders` module automatically implement
