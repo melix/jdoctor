@@ -20,6 +20,35 @@ As a consequence, JDoctor provides a library to make it easier to design good er
 
 This library is currently in experimental stages, feedback is welcome.
 
+### Example
+
+This is an example of how you would construct a new problem descriptor using the convenience API:
+
+```java
+ProblemBuilder.newBuilder(TasteProblem.INVALID_INGREDIENT, Severity.HIGH, "Hawaiian pizza")
+    .withShortDescription("pineapple on pizza isn't allowed")
+    .because("the Italian cuisine should be respected")
+    .withLongDescription("Pineapple on pizza would put your relationship with folks you respect at risk.")
+    .documentedAt("https://www.bbc.co.uk/bitesize/articles/z2vftrd")
+    .addSolution(s -> s.withShortDescription("eat pineapple for desert"))
+    .addSolution(s -> s.withShortDescription("stop adding pineapple to pizza"))
+```
+
+In practice, we encourage users to implement their own implementation of the `Problem` interface (for example extending the `BaseProblem` class) and come with topical builders which are specific to a category of problems.
+
+For example:
+
+```java
+problemRecorder.recordNewProblem(problem ->
+    problem.forType(classWithAnnotationAttached)
+        .reportAs(ERROR)
+        .withId(ValidationProblemId.INVALID_USE_OF_CACHEABLE_TRANSFORM_ANNOTATION)
+        .withDescription(() -> String.format("Using %s here is incorrect", getAnnotationType().getSimpleName()))
+        .happensBecause(() -> String.format("This annotation only makes sense on %s types", TransformAction.class.getSimpleName()))
+        .documentedAt("validation_problems", "invalid_use_of_cacheable_transform_annotation")
+        .addPossibleSolution("Remove the annotation"))
+```
+
 ### Modules
 
 This project consists of the following modules:
