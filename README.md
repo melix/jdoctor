@@ -51,11 +51,33 @@ problemRecorder.recordNewProblem(problem ->
 
 ### Modules
 
-This project consists of the following modules:
+This project consists of the following modules published under the `me.champeau.jdoctor` group id:
 
 - `jdoctor-core` is the main API mosly consisting of the model
 - `jdoctor-utils` is a convenience module providing builders and renderers for problems and solutions
 - `jdoctor-bom` is a platform used for aligning dependency versions
+
+### Using the library in your favorite project
+
+To use `jdoctor` with Gradle:
+
+```groovy
+dependencies {
+    implementation("me.champeau.jdoctor:jdoctor-core:0.1")
+}
+```
+
+From Maven:
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>me.champeau.jdoctor</groupId>
+        <artifactId>jdoctor-core</artifactId>
+        <version>0.1</version>
+    </dependency>
+</dependencies>
+```
 
 ### Building
 
