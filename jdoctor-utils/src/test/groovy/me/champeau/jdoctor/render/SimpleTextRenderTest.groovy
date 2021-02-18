@@ -63,8 +63,7 @@ You can learn more about this problem at https://www.bbc.co.uk/bitesize/articles
                 ProblemBuilder.newBuilder(
                         TestProblemId.problem1,
                         TestSeverity.high,
-                        context("Hawaiian pizza"),
-                        null
+                        context("Hawaiian pizza")
                 )
                         .withShortDescription("pineapple on pizza isn't allowed")
                         .because("the Italian cuisine should be respected")
