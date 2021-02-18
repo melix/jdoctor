@@ -1,6 +1,7 @@
 ## JDoctor, a Java library for good error messages
 
 [![Build](https://github.com/melix/jdoctor/actions/workflows/on-pr.yml/badge.svg)](https://github.com/melix/jdoctor/actions/workflows/on-pr.yml)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/melix/jdoctor.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/melix/jdoctor/context:java)
 
 Designing good error messages is hard. 
 In Java, most often, developers just rely on throwing exceptions with a small text.
