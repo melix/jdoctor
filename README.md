@@ -52,6 +52,33 @@ problemRecorder.recordNewProblem(problem ->
         .addPossibleSolution("Remove the annotation"))
 ```
 
+Then you might wonder how this should be rendered.
+As always, the answer is "it depends".
+`jdoctor` is agnostic with regards to rendering.
+You will not render a message the same way if you have a CLI, a rich interface or an HTML report.
+In short: rendering is the responsibility of the _consumer_ of the problems.
+
+For example, you might want to collect multiple problems, sort them by category, then render a short message and tell that the full explanation is available in a report.
+
+However, for convenience, `jdoctor-utils` provides a simple, simplistic renderer.
+Here's an example of output for the first example:
+
+```
+The cooking police arrested you: pineapple on pizza isn't allowed
+
+Where? : Hawaiian pizza
+
+Why? : the Italian cuisine should be respected
+
+Details: Pineapple on pizza would put your relationship with folks you respect at risk.
+
+Possible solutions:
+    - eat pineapple for desert
+    - stop adding pineapple to pizza
+
+You can learn more about this problem at https://www.bbc.co.uk/bitesize/articles/z2vftrd
+```
+
 ### Modules
 
 This project consists of the following modules published under the `me.champeau.jdoctor` group id:
