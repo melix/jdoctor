@@ -30,20 +30,6 @@ publishing {
             name = "projectLocal"
             url = uri("${rootProject.buildDir}/repo")
         }
-        maven {
-            name = "mavenCentral"
-            url = uri(
-                if (isSnapshot()) {
-                    "https://oss.sonatype.org/content/repositories/snapshots/"
-                } else {
-                    "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-                }
-            )
-            credentials {
-                username = providers.systemProperty("central.username").forUseAtConfigurationTime().orNull
-                password = providers.systemProperty("central.password").forUseAtConfigurationTime().orNull
-            }
-        }
     }
     publications {
         plugins.withId("java-library") {
