@@ -28,31 +28,28 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class DefaultProblemBuilder<ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT, PAYLOAD>
-        extends AbstractDescribingBuilder<ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD>>
-        implements ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD>, Supplier<Problem<ID, SEVERITY, CONTEXT, PAYLOAD>> {
+public class DefaultProblemBuilder<ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT>
+        extends AbstractDescribingBuilder<ProblemBuilder<ID, SEVERITY, CONTEXT>>
+        implements ProblemBuilder<ID, SEVERITY, CONTEXT>, Supplier<Problem<ID, SEVERITY, CONTEXT>> {
 
     private final ID id;
     private final SEVERITY severity;
     private final CONTEXT context;
-    private final PAYLOAD payload;
     private Supplier<String> reason;
     private final List<Supplier<Solution>> solutions = new ArrayList<>();
 
-    public DefaultProblemBuilder(ID id, SEVERITY severity, CONTEXT context, PAYLOAD payload) {
+    public DefaultProblemBuilder(ID id, SEVERITY severity, CONTEXT context) {
         this.id = Objects.requireNonNull(id, "problem id must not be null");
         this.severity = Objects.requireNonNull(severity, "severity must not be null");
         this.context = Objects.requireNonNull(context, "context must not be null");
-        this.payload = payload;
     }
 
 
-    public Problem<ID, SEVERITY, CONTEXT, PAYLOAD> get() {
+    public Problem<ID, SEVERITY, CONTEXT> get() {
         return new BaseProblem<>(
                 id,
                 severity,
                 context,
-                payload,
                 shortDescription,
                 longDescription,
                 reason,
@@ -62,7 +59,7 @@ public class DefaultProblemBuilder<ID extends Enum<ID>, SEVERITY extends Enum<SE
     }
 
     @Override
-    public ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD> addSolution(Consumer<? super SolutionBuilder> solutionSpec) {
+    public ProblemBuilder<ID, SEVERITY, CONTEXT> addSolution(Consumer<? super SolutionBuilder> solutionSpec) {
         solutions.add(() -> {
             SolutionBuilder builder = SolutionBuilder.newSolution();
             solutionSpec.accept(builder);
@@ -72,7 +69,7 @@ public class DefaultProblemBuilder<ID extends Enum<ID>, SEVERITY extends Enum<SE
     }
 
     @Override
-    public ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD> because(Supplier<String> reason) {
+    public ProblemBuilder<ID, SEVERITY, CONTEXT> because(Supplier<String> reason) {
         this.reason = Objects.requireNonNull(reason, "reason supplier must not be null");
         return this;
     }

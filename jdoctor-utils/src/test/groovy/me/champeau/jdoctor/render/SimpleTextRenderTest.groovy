@@ -30,8 +30,7 @@ class SimpleTextRenderTest extends Specification implements ProblemsVerifier {
                 ProblemBuilder.newBuilder(
                         TestProblemId.problem1,
                         TestSeverity.high,
-                        context("Hawaiian pizza"),
-                        null
+                        context("Hawaiian pizza")
                 )
                         .withShortDescription("pineapple on pizza isn't allowed")
                         .because("the Italian cuisine should be respected")

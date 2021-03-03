@@ -32,32 +32,22 @@ import java.util.function.Supplier;
  * @param <ID> the type of the problem ID
  * @param <SEVERITY> the type of the severity
  * @param <CONTEXT> the type of the problem context
- * @param <PAYLOAD> the type of the problem payload
  */
-public interface ProblemBuilder<ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT, PAYLOAD>
-        extends DescriptionBuilder<ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD>>, DocumentedBuilder<ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD>>, Builder {
-    static <ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT, PAYLOAD> ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD> newBuilder(
-            ID problemId,
-            SEVERITY severity,
-            CONTEXT context,
-            PAYLOAD payload
-    ) {
-        return new DefaultProblemBuilder<>(problemId, severity, context, payload);
-    }
-
-    static <ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT> ProblemBuilder<ID, SEVERITY, CONTEXT, Void> newBuilder(
+public interface ProblemBuilder<ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT>
+        extends DescriptionBuilder<ProblemBuilder<ID, SEVERITY, CONTEXT>>, DocumentedBuilder<ProblemBuilder<ID, SEVERITY, CONTEXT>>, Builder {
+    static <ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT> ProblemBuilder<ID, SEVERITY, CONTEXT> newBuilder(
             ID problemId,
             SEVERITY severity,
             CONTEXT context
     ) {
-        return newBuilder(problemId, severity, context, null);
+        return new DefaultProblemBuilder<>(problemId, severity, context);
     }
 
-    ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD> addSolution(Consumer<? super SolutionBuilder> solutionSpec);
+    ProblemBuilder<ID, SEVERITY, CONTEXT> addSolution(Consumer<? super SolutionBuilder> solutionSpec);
 
-    ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD> because(Supplier<String> reason);
+    ProblemBuilder<ID, SEVERITY, CONTEXT> because(Supplier<String> reason);
 
-    default ProblemBuilder<ID, SEVERITY, CONTEXT, PAYLOAD> because(String reason) {
+    default ProblemBuilder<ID, SEVERITY, CONTEXT> because(String reason) {
         return because(() -> reason);
     }
 }

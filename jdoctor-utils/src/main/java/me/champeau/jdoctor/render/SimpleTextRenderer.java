@@ -22,11 +22,11 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class SimpleTextRenderer {
-    public static <ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT, PAYLOAD> String render(Problem<ID, SEVERITY, CONTEXT, PAYLOAD> problem) {
+    public static <ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT> String render(Problem<ID, SEVERITY, CONTEXT> problem) {
         return render("A problem happened", problem);
     }
 
-    public static <ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT, PAYLOAD> String render(String header, Problem<ID, SEVERITY, CONTEXT, PAYLOAD> problem) {
+    public static <ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT> String render(String header, Problem<ID, SEVERITY, CONTEXT> problem) {
         StringBuilder sb = new StringBuilder();
         TreeNode treeNode = new TreeNode(sb, 0);
         treeNode.node(header + ": ").append(problem.getWhat());

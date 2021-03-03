@@ -19,8 +19,8 @@ import me.champeau.jdoctor.Problem;
 import me.champeau.jdoctor.render.SimpleTextRenderer;
 
 public class ExceptionUtils {
-    public static <T extends Throwable, ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT, PAYLOAD>
-    RuntimeException asRuntimeException(Problem<ID, SEVERITY, CONTEXT, PAYLOAD> problem) {
+    public static <T extends Throwable, ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT>
+    RuntimeException asRuntimeException(Problem<ID, SEVERITY, CONTEXT> problem) {
         String message = SimpleTextRenderer.render(problem);
         return new RuntimeException(message);
     }
