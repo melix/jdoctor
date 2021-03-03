@@ -2,6 +2,8 @@ plugins {
     id("io.github.gradle-nexus.publish-plugin")
 }
 
+group = "me.champeau.jdoctor"
+
 nexusPublishing {
     repositories {
         sonatype {
