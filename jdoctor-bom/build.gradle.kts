@@ -23,6 +23,7 @@ description = "A platform (BOM) used to align all module versions"
 
 dependencies {
     constraints {
-        api(project(":jdoctor-core"))
+        api(projects.jdoctorCore)
+        api(projects.jdoctorUtils)
     }
 }

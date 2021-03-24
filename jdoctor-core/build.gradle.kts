@@ -10,7 +10,7 @@ description = "The core model of jdoctor"
 dependencies {
     api(platform(project(":jdoctor-bom")))
     testImplementation(libs.bundles.commonTestLibraries)
-    testFixturesImplementation(libs.groovy)
+    testFixturesImplementation(libs.groovy.core)
 }
 
 val javaComponent = components["java"] as AdhocComponentWithVariants

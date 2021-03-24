@@ -1,0 +1,12 @@
+[versions]
+groovy = "2.5.14"
+junit = "4.13.1"
+spock = "1.3-groovy-2.5"
+
+[libraries]
+groovy-core = { module = "org.codehaus.groovy:groovy", version.ref = "groovy" }
+junit = "junit:junit:4.13.1"
+spock = { module = "org.spockframework:spock-core", version.ref = "spock" }
+
+[bundles]
+commonTestLibraries = ["groovy-core", "junit", "spock"]
