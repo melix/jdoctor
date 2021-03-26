@@ -24,5 +24,5 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.gradle-nexus:publish-plugin:1.0.0")
+    implementation(libs.plugins.nexus)
 }
