@@ -9,7 +9,7 @@ description = "The core model of jdoctor"
 
 dependencies {
     api(platform(project(":jdoctor-bom")))
-    testImplementation(libs.bundles.commonTestLibraries)
+    testImplementation(libs.bundles.test.commonLibraries)
     testFixturesImplementation(libs.groovy.core)
 }
 

@@ -23,10 +23,9 @@ plugins {
 description = "A set of utilities to make easier the use of jdoctor"
 
 dependencies {
-    api(platform(project(":jdoctor-bom")))
+    api(platform(projects.jdoctorBom))
     api(projects.jdoctorCore)
 
-    testImplementation(libs.bundles.commonTestLibraries)
-
-    testImplementation(testFixtures(project(":jdoctor-core")))
+    testImplementation(libs.bundles.test.commonLibraries)
+    testImplementation(testFixtures(projects.jdoctorCore))
 }
