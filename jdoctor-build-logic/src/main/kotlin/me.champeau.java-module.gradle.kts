@@ -1,3 +1,5 @@
+import me.champeau.JavaLibraryExtension
+
 /*
  * Copyright 2021 the original author or authors.
  *
@@ -17,6 +19,8 @@
 plugins {
     `java-library`
 }
+
+extensions.create("javaLibrary", JavaLibraryExtension::class, project)
 
 java {
     withSourcesJar()
