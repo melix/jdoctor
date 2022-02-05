@@ -10,7 +10,7 @@ groovy-core = { module = "org.codehaus.groovy:groovy", version.ref = "groovy" }
 junit = "junit:junit:4.13.1"
 spock = { module = "org.spockframework:spock-core", version.ref = "spock" }
 
-plugins-nexus = { module = "io.github.gradle-nexus:publish-plugin", version.ref = "nexus"}
+nexus-plugin = { module = "io.github.gradle-nexus:publish-plugin", version.ref = "nexus"}
 
 [bundles]
 test-commonLibraries = ["groovy-core", "junit", "spock"]

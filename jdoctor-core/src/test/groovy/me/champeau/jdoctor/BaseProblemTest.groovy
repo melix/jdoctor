@@ -83,4 +83,24 @@ class BaseProblemTest extends Specification implements ProblemsVerifier {
             doesNotHaveLong()
         }
     }
+
+    def "can have a problem which ID is an int"() {
+        given:
+        def problem = new TestProblem2(
+                404,
+                TestSeverity.low,
+                context("c"),
+                { "page not found" },
+                { "the page at the supplied URL doesn't exist" },
+                { "This happened because you tried to open a page which doesn't exist on this server" },
+                { "https://some.url" },
+                [ { solution("check the URL") } as Supplier]
+        )
+
+        expect:
+        descriptionOf(problem.possibleSolutions[0]) {
+            hasShort "check the URL"
+            doesNotHaveLong()
+        }
+    }
 }

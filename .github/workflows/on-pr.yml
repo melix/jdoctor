@@ -14,3 +14,5 @@ jobs:
       - uses: eskatos/gradle-command-action@v1
         with:
           arguments: build --scan
+          distributions-cache-enabled: true
+          dependencies-cache-enabled: true

@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-plugins {
-    `kotlin-dsl`
-}
+package me.champeau.jdoctor
 
-repositories {
-    mavenCentral()
-    gradlePluginPortal()
-}
+import groovy.transform.CompileStatic
 
-dependencies {
-    implementation(libs.nexus.plugin)
+import java.util.function.Supplier
+
+@CompileStatic
+class TestProblem2 extends BaseProblem<Integer, TestSeverity, TestContext> {
+    protected TestProblem2(Integer testProblemId, TestSeverity testSeverity, TestContext context, Supplier<String> shortDescription, Supplier<String> longDescription, Supplier<String> reason, Supplier<String> docUrl, List<Supplier<Solution>> solutions) {
+        super(testProblemId, testSeverity, context, shortDescription, longDescription, reason, docUrl, solutions)
+    }
 }

@@ -60,11 +60,11 @@ import java.util.Optional;
  * <p>A {@link StandardSeverity convenience, opiniated, severity enum} is available for use
  * if you need one.</p>
  *
- * @param <ID> an ID enumeration. Each problem should be uniquely identified by ID.
+ * @param <ID> an ID. Each problem should be uniquely identified by ID.
  * @param <SEVERITY> the severity type
  * @param <CONTEXT> the type of the context, representing where the problem happened
  */
-public interface Problem<ID extends Enum<ID>, SEVERITY extends Enum<SEVERITY>, CONTEXT> extends WithId<ID>, WithDescription, WithDocumentationLink {
+public interface Problem<ID, SEVERITY extends Enum<SEVERITY>, CONTEXT> extends WithId<ID>, WithDescription, WithDocumentationLink {
     /**
      * @return How severe is the problem
      */

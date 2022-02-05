@@ -15,6 +15,6 @@
  */
 package me.champeau.jdoctor;
 
-public interface WithId<ID extends Enum<ID>> {
+public interface WithId<ID> {
     ID getId();
 }
