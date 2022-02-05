@@ -93,7 +93,7 @@ To use `jdoctor` with Gradle:
 
 ```groovy
 dependencies {
-    implementation("me.champeau.jdoctor:jdoctor-core:0.1")
+    implementation("me.champeau.jdoctor:jdoctor-core:0.1.2")
 }
 ```
 
